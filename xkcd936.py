@@ -1,14 +1,26 @@
 #!/usr/bin/env python3
+"""Quick implementation of XKCD 936."""
 import random
 import sys
 
 
-with open('/usr/share/dict/words') as f:
-    words = [l.strip() for l in f.readlines()]
+def xkcd936(length):
+    """Quick implementation of XKCD 936."""
+    with open('/usr/share/dict/words') as f:
+        words = [line.strip() for line in f.readlines()]
 
-words = [w for w in words if "'" not in w]
+    words = [w for w in words if "'" not in w]
 
-for i in range(0, int(sys.argv[1])):
-    print(random.choice(words).capitalize(), end='')
+    for _ in range(0, length):
+        print(random.choice(words).capitalize(), end='')
 
-print()
+    print()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        length = int(sys.argv[1])
+    else:
+        length = 3
+
+    xkcd936(length)
